@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, TextInput, Pressable } from 'react-native'
 import React from 'react'
 import Ionicon from 'react-native-vector-icons/Ionicons'
 import { SearchBar } from 'react-native-elements';
@@ -24,6 +24,16 @@ const HomeHeader = () => {
                         <FontIcon name="bell" color='yellow' size={18}/>
                     </View>
                 </View>
+            </View>
+        </View>
+        <View className="mt-9 flex flex-row gap-x-3 items-center justify-around">
+            <View className="w-3/4">
+                <TextInput className="bg-white rounded p-2" placeholder='Search Product...'/>
+            </View>
+            <View>
+                <Pressable className="p-1 bg-white rounded">
+                    <Ionicon name="grid" color="gray" size={34}/>
+                </Pressable>
             </View>
         </View>
     </View>

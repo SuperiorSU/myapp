@@ -46,7 +46,7 @@ const About = () => {
       >
        <View className="mb-10 ">
     
-      <Text className="text-white font-semibold text-3xl px-10 mb-3 mt-3">CromaZone</Text>
+      <Text className="text-white font-semibold text-3xl px-10 mb-3 mt-3">Antier Solutions</Text>
       <Text className="text-white  text-md px-10 text-justify">Innovate Solutions Inc. provides top-quality products to elevate your shopping experience and meet all your needs.</Text>
     </View>
     </ImageBackground>

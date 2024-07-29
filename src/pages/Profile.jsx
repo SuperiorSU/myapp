@@ -11,6 +11,7 @@ const Profile = () => {
     { name: "Notifications", icon: "bell", library: "FontAwesome" },
     { name: "Devices", icon: "devices", library: "MaterialIcons" },
     { name: "Passwords", icon: "lock", library: "FontAwesome" },
+    { name: "Wishlist", icon: "heart", library: "FontAwesome" },
     { name: "Language", icon: "language", library: "MaterialIcons" },
     { name: "Terms & Policies", icon: "file-text", library: "FontAwesome" },
     { name: "FAQs", icon: "question-circle", library: "FontAwesome" },
@@ -34,7 +35,7 @@ const Profile = () => {
     <ScrollView>
       <View className="rounded-b-[18px] overflow-hidden">
       <ImageBackground
-        source={{ uri: 'https://t4.ftcdn.net/jpg/06/10/26/15/360_F_610261529_vk9kf4ooTP5eSsQdOEyB4miRHn1YWCD1.jpg' }}
+        source={{ uri: 'https://img.freepik.com/free-vector/abstract-fluid-neon-color-3d-effect-business-background-banner-design-multipurpose_1340-16790.jpg' }}
         style={{
           height: 300,
           width: '100%',
