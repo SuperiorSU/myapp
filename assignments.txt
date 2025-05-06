@@ -1,0 +1,168 @@
+// import React, { useState } from 'react';
+// import { View, Text, Pressable } from 'react-native';
+// import JioCinema from './src/components/JioCinema';
+// import Goal from './src/components/Goal';
+
+// const App = () => {
+//   // const [isGoal, setIsGoal] = useState(true);
+//   const studentData = [
+//     {
+//       name: "John Doe",
+//       marks: {
+//         physics: 80,
+//         chemistry: 75,
+//         math: 90
+//       }
+//     },
+//     {
+//       name: "Jane Smith",
+//       marks: {
+//         physics: 85,
+//         chemistry: 80,
+//         math: 88
+//       }
+//     },
+//     {
+//       name: "Sam Johnson",
+//       marks: {
+//         physics: 70,
+//         chemistry: 60,
+//         math: 75
+//       }
+//     },
+//     {
+//       name: "Lucy Brown",
+//       marks: {
+//         physics: 95,
+//         chemistry: 89,
+//         math: 92
+//       }
+//     },
+//     {
+//       name: "Mike Davis",
+//       marks: {
+//         physics: 60,
+//         chemistry: 55,
+//         math: 65
+//       }
+//     }
+//   ];
+//   return (
+//     <View className="flex-1 items-center justify-center">
+//       {/* <Goal isGoal={isGoal} />
+//       <View className="flex-row mt-6">
+//         <Pressable
+//           onPress={() => setIsGoal(true)}
+//           className="bg-green-500 py-2 px-4 rounded-lg mx-2">
+//           <Text className="text-white font-semibold">Set Goal to Done</Text>
+//         </Pressable>
+//         <Pressable
+//           onPress={() => setIsGoal(false)}
+//           className="bg-red-500 py-2 px-4 rounded-lg mx-2">
+//           <Text className="text-white font-semibold">Set Goal to Missed</Text>
+//         </Pressable>
+//       </View> */}
+
+//         <View></View>
+//     </View>
+//   );
+// };
+
+// export default App;
+
+import React, { useState } from 'react';
+import { View, Text, FlatList, TouchableOpacity, Modal, Button, Pressable } from 'react-native';
+
+const data = [
+  {
+    id: 1,
+    name: "John Doe",
+    marks: { physics: 80, chemistry: 75, math: 90 }
+  },
+  {
+    id: 2,
+    name: "Jane Smith",
+    marks: { physics: 85, chemistry: 80, math: 88 }
+  },
+  {
+    id: 3,
+    name: "Sam Johnson",
+    marks: { physics: 70, chemistry: 60, math: 75 }
+  },
+  {
+    id: 4,
+    name: "Lucy Brown",
+    marks: { physics: 95, chemistry: 89, math: 92 }
+  },
+  {
+    id: 5,
+    name: "Mike Davis",
+    marks: { physics: 60, chemistry: 55, math: 65 }
+  }
+];
+
+const TableRow = ({ item, onPress }) => (
+  <View className="flex-row justify-between border-b border-gray-300 p-4">
+    <TouchableOpacity className="flex justify-center" onPress={onPress}>
+      <Text className="text-lg font-bold rounded-full px-2 text-center text-white bg-black">+</Text>
+    </TouchableOpacity>
+    <Text className="flex-1 text-center">{item.name}</Text>
+    <Text className="flex-1 text-right">
+      Physics: {item.marks.physics}, Chemistry: {item.marks.chemistry}, Math: {item.marks.math}
+    </Text>
+  </View>
+);
+
+export default function App() {
+  const [selectedItem, setSelectedItem] = useState();
+  const [modalVisible, setModalVisible] = useState(false);
+  const openModal = (item) => {
+    setSelectedItem(item);
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+    setSelectedItem();
+  };
+
+  return (
+    <View className="">
+      <View className="flex-row justify-center bg-gray-800 p-4">
+        <Text className="text-white font-bold flex-1">S.No</Text>
+        <Text className="text-white font-bold flex-1">Name</Text>
+        <Text className="text-white font-bold flex-1 text-right">
+          Marks in PCM(out of 100)
+        </Text>
+      </View>
+      <FlatList
+        data={data}
+        renderItem={({item})=>(
+          <TableRow item={item} onPress={()=>openModal(item)} />
+        )}
+        keyExtractor={(item) => item.id.toString()}
+      />
+      {selectedItem&&(
+        <Modal
+          visible={modalVisible}
+          transparent={true}
+          animationType="slide"
+        >
+          <View className="flex-1 justify-center items-center bg-gray-200 bg-opacity-75">
+            <View className="bg-white p-6 rounded-lg w-3/4">
+              <Text className="text-xl font-bold mb-4 border-slate-400 border-b-[1px]">Details</Text>
+              <Text className="text-base font-semibold">Name:   {selectedItem.name}
+              </Text>
+              <Text className="text-base font-semibold">Physics: {selectedItem.marks.physics}</Text>
+              <Text className="text-base font-semibold">Chemistry: {selectedItem.marks.chemistry}</Text>
+              <Text className="text-base font-semibold">Math: {selectedItem.marks.math}</Text>
+              <Pressable className="mt-5 bg-red-500 w-16 rounded-md px-3 py-2" color={'red'} onPress={closeModal} >
+                <Text className="text-white font-semibold">Close</Text>
+              </Pressable>
+            </View>
+          </View>
+        </Modal>
+      )}
+    </View>
+  );
+}
